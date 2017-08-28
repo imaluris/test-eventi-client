@@ -10,7 +10,7 @@ angular.module('app.routes', [])
     
 
     .state('login', {
-    url: '/page1',
+    url: '/page2',
     templateUrl: 'templates/login.html',
     controller: 'loginCtrl'
   })
@@ -27,7 +27,7 @@ angular.module('app.routes', [])
     controller: 'eventsCtrl'
   })
 
-$urlRouterProvider.otherwise('/page1')
+$urlRouterProvider.otherwise('/page2')
 
 
 });
