@@ -52,4 +52,38 @@ function ($scope, $http, $stateParams) {
     console.log(res.data);
     });
 }])
+
+.controller('loginOrgCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $http, $stateParams, $ionicPopup) {
+
+    $scope.data={};
+    
+            $scope.submit = function () {
+                var link = 'https://eventi-musicali.herokuapp.com/loginorg';
+                email = $scope.data.email;
+                password = $scope.data.password;
+    
+                console.log(email, password);
+                
+                $http.post(link, {email : email, password : password}).then(function (res){
+                    $scope.response = res.data;
+                    console.log(res.data.message);
+                    if(res.data.message === undefined){
+                        window.location.href = "#/page4";
+                    }
+                    else {
+                        var myPopup = $ionicPopup.show({
+                            title: 'ERROR',
+                            subTitle: res.data.message,
+                            buttons: [{text: 'OK', type: 'button-positive'}]                
+                        });
+                    } 
+                });
+                
+      }
+    
+
+}])
  

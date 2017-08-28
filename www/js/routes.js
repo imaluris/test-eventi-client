@@ -27,6 +27,12 @@ angular.module('app.routes', [])
     controller: 'eventsCtrl'
   })
 
+  .state('loginorg', {
+    url: '/page5',
+    templateUrl: 'templates/loginorg.html',
+    controller: 'loginOrgCtrl'
+  })
+
 $urlRouterProvider.otherwise('/page2')
 
 
