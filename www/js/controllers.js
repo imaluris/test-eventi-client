@@ -42,7 +42,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
     $scope.data={};
     
             $scope.submit = function () {
-                var link = 'http://eventi-musicali.herokuapp.com/signup';
+                var link = 'http://eventi-musicali.herokuapp.com/user';
                 nome = $scope.data.nome;
                 cognome = $scope.data.cognome;
                 email = $scope.data.email;
