@@ -33,6 +33,12 @@ angular.module('app.routes', [])
     controller: 'loginOrgCtrl'
   })
 
+  .state('signuporg', {
+    url: '/page6',
+    templateUrl: 'templates/signuporg.html',
+    controller: 'signuporgCtrl'
+  })
+
 $urlRouterProvider.otherwise('/page2')
 
 

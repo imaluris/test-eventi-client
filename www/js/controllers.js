@@ -53,7 +53,12 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                     $scope.response = res.data;
                     console.log(res);
                     if(res.data.message === undefined){
-                        window.location.href = "#/page4";
+                        var myPopup = $ionicPopup.show({
+                            title: 'ERROR',
+                            subTitle: "Registrazione effettuata",
+                            buttons: [{text: 'OK', type: 'button-positive'}]                
+                        });
+                        window.location.href = "#/page2";
                     }
                     else {
                         var myPopup = $ionicPopup.show({
@@ -99,6 +104,42 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                     console.log(res.data.message);
                     if(res.data.message === undefined){
                         window.location.href = "#/page4";
+                    }
+                    else {
+                        var myPopup = $ionicPopup.show({
+                            title: 'ERROR',
+                            subTitle: res.data.message,
+                            buttons: [{text: 'OK', type: 'button-positive'}]                
+                        });
+                    } 
+                });
+                
+      }
+    
+
+}])
+
+.controller('signuporgCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $http, $stateParams, $ionicPopup) {
+
+    $scope.data={};
+    
+            $scope.submit = function () {
+                var link = 'http://eventi-musicali.herokuapp.com/organizzatore';
+                nome = $scope.data.nome;
+                cognome = $scope.data.cognome;
+                email = $scope.data.email;
+                password = $scope.data.password;
+                company = $scope.data.company;
+                
+                
+                $http.post(link,{nome : nome, cognome : cognome, email : email, password : password, company: company}).then(function (res){
+                    $scope.response = res.data;
+                    console.log(res);
+                    if(res.data.message === undefined){
+                        window.location.href = "#/page5";
                     }
                     else {
                         var myPopup = $ionicPopup.show({
