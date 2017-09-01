@@ -7,8 +7,13 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    
 
+  .state('home', {
+    url: '/page1',
+    templateUrl: 'templates/home.html',
+    controller: 'homeCtrl'
+  })
+    
     .state('login', {
     url: '/page2',
     templateUrl: 'templates/login.html',
@@ -39,7 +44,7 @@ angular.module('app.routes', [])
     controller: 'signuporgCtrl'
   })
 
-$urlRouterProvider.otherwise('/page2')
+$urlRouterProvider.otherwise('/page1')
 
 
 });

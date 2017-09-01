@@ -139,6 +139,11 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                     $scope.response = res.data;
                     console.log(res);
                     if(res.data.message === undefined){
+                        var myPopup = $ionicPopup.show({
+                            title: 'ERROR',
+                            subTitle: "Registrazione effettuata",
+                            buttons: [{text: 'OK', type: 'button-positive'}]                
+                        });
                         window.location.href = "#/page5";
                     }
                     else {
@@ -153,5 +158,12 @@ function ($scope, $http, $stateParams, $ionicPopup) {
       }
     
 
+}])
+
+.controller('homeCtrl', ['$scope', '$http', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $http, $stateParams) {
+   
 }])
  
