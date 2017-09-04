@@ -1,9 +1,13 @@
 <ion-view title="Events" id="page4">
   <ion-content padding="true" class="has-header">
     <ion-list id="events-list2">
-      <ion-item id="events-list-item4">Item 1</ion-item>
-      <ion-item id="events-list-item5">Item 2</ion-item>
-      <ion-item id="events-list-item6">Item 3</ion-item>
+      <ion-item ng-repeat="event in events track by $index" align="center">
+       <b>{{event.artista}}</b> <p> 
+          {{event.luogo}} <p> 
+          {{event.data}} <p>
+          {{event.prezzo}}€ <p>
+          <button class="button button-positive button-login button-small" ng-click="buy()">Acquista</button>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

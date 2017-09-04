@@ -44,6 +44,24 @@ angular.module('app.routes', [])
     controller: 'signuporgCtrl'
   })
 
+  .state('orgchoice', {
+    url: '/page7',
+    templateUrl: 'templates/orgchoice.html',
+    controller: 'orgChoiceCtrl'
+  })
+
+  .state('eventsorg', {
+    url: '/page8',
+    templateUrl: 'templates/eventsorg.html',
+    controller: 'eventsOrgCtrl'
+  })
+
+  .state('addevent', {
+    url: '/page9',
+    templateUrl: 'templates/addevent.html',
+    controller: 'addEventCtrl'
+  })
+
 $urlRouterProvider.otherwise('/page1')
 
 

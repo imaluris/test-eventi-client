@@ -1,0 +1,45 @@
+<ion-view title="Add event" id="page9" ng-controller="addEventCtrl">
+        <ion-content padding="true" class="has-header">
+            <div class="row row-center">
+              <div class="col">
+            
+                <div id="login-form"></div>
+            
+                <form>
+                  <div class="list">
+                    <label class="item item-input">
+                        <input type="text" placeholder="artista" ng-model="data.artista">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="luogo" ng-model="data.luogo">
+                    </label>
+
+                    <label class="item item-input">
+                            <input type="text" placeholder="prezzo" ng-model="data.prezzo">
+                    </label>
+                    <h5>Data:</h5>
+                    <label class="item item-input">
+                        <input type="text" placeholder="giorno" ng-model="data.giorno">
+                    </label>
+
+                    <label class="item item-input">
+                        <input type="text" placeholder="mese" ng-model="data.mese">
+                    </label>
+
+                    <label class="item item-input">
+                       <input type="text" placeholder="anno" ng-model="data.anno">
+                    </label>
+
+                    <label class="item item-input">
+                        <input type="text" placeholder="orario" ng-model="data.orario">
+                    </label>
+                    
+                  </div>
+            
+                  <button class="button button-block button-positive button-login" ng-click="submit()">Signup</button>
+                </form>
+            
+              </div>
+            </div>
+        </ion-content>
+      </ion-view>
