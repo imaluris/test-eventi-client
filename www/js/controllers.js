@@ -10,14 +10,13 @@ function ($scope, $stateParams, $http, $ionicPopup) {
 
         $scope.submit = function () {
             var link = 'https://eventi-musicali.herokuapp.com/login';
-            email = $scope.data.email;
-            password = $scope.data.password;
-
-            console.log(email, password);
+            this.email = $scope.data.email;
+            this.password = $scope.data.password;
             
-            $http.post(link, {email : email, password : password}).then(function (res){
+            
+            $http.post(link, {email : this.email, password : this.password}).then(function (res){
                 $scope.response = res.data;
-                console.log(res.data.message);
+                console.log($scope.data.email, $scope.data.password);
                 if(res.data.message === undefined){
                     window.location.href = "#/page4";
                 }
@@ -43,13 +42,13 @@ function ($scope, $http, $stateParams, $ionicPopup) {
     
             $scope.submit = function () {
                 var link = 'http://eventi-musicali.herokuapp.com/user';
-                nome = $scope.data.nome;
-                cognome = $scope.data.cognome;
-                email = $scope.data.email;
-                password = $scope.data.password;
+                this.nome = $scope.data.nome;
+                this.cognome = $scope.data.cognome;
+                this.email = $scope.data.email;
+                this.password = $scope.data.password;
                 
                 
-                $http.post(link,{nome : nome, cognome : cognome, email : email, password : password}).then(function (res){
+                $http.post(link,{nome : this.nome, cognome : this.cognome, email : this.email, password : this.password}).then(function (res){
                     $scope.response = res.data;
                     console.log(res);
                     if(res.data.message === undefined){
@@ -57,7 +56,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                             title: 'Registrazione effettuata',
                             buttons: [{text: 'OK', type: 'button-positive'}]                
                         });
-                        window.location.href = "#/page5";
+                        window.location.href = "#/page2";
                     }
                     else {
                         var myPopup = $ionicPopup.show({
@@ -118,12 +117,11 @@ function ($scope, $http, $stateParams, $ionicPopup) {
     
             $scope.submit = function () {
                 var link = 'https://eventi-musicali.herokuapp.com/loginorg';
-                email = $scope.data.email;
-                password = $scope.data.password;
+                this.email = $scope.data.email;
+                this.password = $scope.data.password;
     
-                console.log(email, password);
                 
-                $http.post(link, {email : email, password : password}).then(function (res){
+                $http.post(link, {email : this.email, password : this.password}).then(function (res){
                     $scope.response = res.data;
                     console.log(res.data.message);
                     if(res.data.message === undefined){
@@ -152,14 +150,14 @@ function ($scope, $http, $stateParams, $ionicPopup) {
     
             $scope.submit = function () {
                 var link = 'http://eventi-musicali.herokuapp.com/organizzatore';
-                nome = $scope.data.nome;
-                cognome = $scope.data.cognome;
-                email = $scope.data.email;
-                password = $scope.data.password;
-                company = $scope.data.company;
+                this.nome = $scope.data.nome;
+                this.cognome = $scope.data.cognome;
+                this.email = $scope.data.email;
+                this.password = $scope.data.password;
+                this.company = $scope.data.company;
                 
                 
-                $http.post(link,{nome : nome, cognome : cognome, email : email, password : password, company: company}).then(function (res){
+                $http.post(link,{nome : this.nome, cognome : this.cognome, email : this.email, password : this.password, company: this.company}).then(function (res){
                     $scope.response = res.data;
                     console.log(res);
                     if(res.data.message === undefined){
