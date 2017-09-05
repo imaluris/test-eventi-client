@@ -54,11 +54,10 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                     console.log(res);
                     if(res.data.message === undefined){
                         var myPopup = $ionicPopup.show({
-                            title: 'ERROR',
-                            subTitle: "Registrazione effettuata",
+                            title: 'Registrazione effettuata',
                             buttons: [{text: 'OK', type: 'button-positive'}]                
                         });
-                        window.location.href = "#/page2";
+                        window.location.href = "#/page5";
                     }
                     else {
                         var myPopup = $ionicPopup.show({
@@ -80,10 +79,26 @@ function ($scope, $http, $stateParams, $ionicPopup) {
 function ($scope, $http, $stateParams, $ionicPopup) {
     var link = 'https://eventi-musicali.herokuapp.com/events'
     events: any = [];
+    dataEst = "";
+    this.date = "";
+    this.temp = "";
+    this.hour = 0;;
+    n = 0;
+    i = 0;
 
     $http.get(link).then(function (res){
-        $scope.events = res.data;
-    console.log($scope.events[1].artista);
+        events = res.data;
+        n = events.length;
+        while(i < n){
+            dataEst = events[i].data.split("T");
+            this.date = dataEst[0].split("-").reverse().join("-");
+            this.temp = dataEst[1].split(":");
+            this.hour = temp[0] + ':' + temp[1];
+            events[i].data = this.date;
+            events[i].ora = hour;
+            i++;
+        }
+        $scope.events = events;
     });
 
     $scope.buy = function() {
@@ -149,8 +164,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                     console.log(res);
                     if(res.data.message === undefined){
                         var myPopup = $ionicPopup.show({
-                            title: 'ERROR',
-                            subTitle: "Registrazione effettuata",
+                            title: 'Registrazione effettuata',
                             buttons: [{text: 'OK', type: 'button-positive'}]                
                         });
                         window.location.href = "#/page5";
@@ -189,10 +203,26 @@ function ($scope, $http, $stateParams) {
 function ($scope, $http, $stateParams, $ionicPopup) {
     var link = 'https://eventi-musicali.herokuapp.com/events'
     events: any = [];
+    dataEst = "";
+    this.date = "";
+    this.temp = "";
+    this.hour = 0;;
+    n = 0;
+    i = 0;
 
     $http.get(link).then(function (res){
-        $scope.events = res.data;
-    console.log($scope.events[1].artista);
+        events = res.data;
+        n = events.length;
+        while(i < n){
+            dataEst = events[i].data.split("T");
+            this.date = dataEst[0].split("-").reverse().join("-");
+            this.temp = dataEst[1].split(":");
+            this.hour = temp[0] + ':' + temp[1];
+            events[i].data = this.date;
+            events[i].ora = hour;
+            i++;
+        }
+        $scope.events = events;
     });
 
     $scope.buy = function() {
@@ -223,8 +253,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                     console.log(artista);
                     if(res.data.message === undefined){
                         var myPopup = $ionicPopup.show({
-                            title: 'ERROR',
-                            subTitle: "Evento aggiunto",
+                            title: 'Evento aggiunto',
                             buttons: [{text: 'OK', type: 'button-positive'}]                
                         });
                         window.location.href = "#/page2";
