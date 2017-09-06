@@ -1,5 +1,6 @@
 <ion-view title="Events" id="page8">
         <ion-content padding="true" class="has-header">
+            <button class="button button-block button-dark button-small" ng-click="logout()">Logout</button> 
           <ion-list id="events-list2">
               <ion-item ng-repeat="event in events | orderBy:'-data':'reverse' track by $index" align="">
                   <div class= "row">
@@ -20,7 +21,6 @@
                       {{event.prezzo}}€ <p>
                     </div>
                   </div>
-                    <button class="button button-block button-positive button-login button-small" ng-click="modifica()">Modifica</button>
                     <button class="button button-block button-positive button-login button-small" ng-click="elimina()">Elimina</button>
                 </ion-item>
           </ion-list>

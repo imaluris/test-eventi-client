@@ -1,5 +1,6 @@
 <ion-view title="Events" id="page4">
   <ion-content padding="true" class="has-header">
+    <button class="button button-block button-dark button-small" ng-click="logout()">Logout</button> 
     <ion-list id="events-list2">
       <ion-item ng-repeat="event in events | orderBy:'-data':'reverse' track by $index">
         <div class= "row">

@@ -16,7 +16,6 @@ function ($scope, $stateParams, $http, $ionicPopup) {
             
             $http.post(link, {email : this.email, password : this.password}).then(function (res){
                 $scope.response = res.data;
-                console.log($scope.data.email, $scope.data.password);
                 if(res.data.message === undefined){
                     window.location.href = "#/page4";
                 }
@@ -46,11 +45,45 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                 this.cognome = $scope.data.cognome;
                 this.email = $scope.data.email;
                 this.password = $scope.data.password;
-                
+
+                if((this.nome  === undefined) || (this.nome === "")){
+                    var myPopup = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                } else if ((this.cognome  === undefined) || (this.cognome === "")){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }else if (this.email === undefined){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Formato email: example@example.it',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }else if (this.password === undefined){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing password',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                } else if (this.password.length < 6){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Formato password: minimo 6 caratteri',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }
                 
                 $http.post(link,{nome : this.nome, cognome : this.cognome, email : this.email, password : this.password}).then(function (res){
                     $scope.response = res.data;
-                    console.log(res);
                     if(res.data.message === undefined){
                         var myPopup = $ionicPopup.show({
                             title: 'Registrazione effettuata',
@@ -58,13 +91,6 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                         });
                         window.location.href = "#/page2";
                     }
-                    else {
-                        var myPopup = $ionicPopup.show({
-                            title: 'ERROR',
-                            subTitle: res.data.message,
-                            buttons: [{text: 'OK', type: 'button-positive'}]                
-                        });
-                    } 
                 });
                 
       }
@@ -106,6 +132,16 @@ function ($scope, $http, $stateParams, $ionicPopup) {
             buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
         });
     }
+
+    $scope.logout = function() {
+        var linkout = 'https://eventi-musicali.herokuapp.com/logout'
+        var myPopup = $ionicPopup.show({
+            title: 'Logout effettuato',
+            buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
+        });
+            window.location.href = "#/page2";
+        
+    }
 }])
 
 .controller('loginOrgCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -123,7 +159,6 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                 
                 $http.post(link, {email : this.email, password : this.password}).then(function (res){
                     $scope.response = res.data;
-                    console.log(res.data.message);
                     if(res.data.message === undefined){
                         window.location.href = "#/page7";
                     }
@@ -155,11 +190,53 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                 this.email = $scope.data.email;
                 this.password = $scope.data.password;
                 this.company = $scope.data.company;
+
+                if((this.nome  === undefined) || (this.nome === "")){
+                    var myPopup = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                } else if ((this.cognome  === undefined) || (this.cognome === "")){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }else if (this.email === undefined){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Formato email: example@example.it',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }else if (this.password === undefined){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing password',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                } else if (this.password.length < 6){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Formato password: minimo 6 caratteri',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }else if ((this.company  === undefined) || (this.company === "")){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }
                 
                 
                 $http.post(link,{nome : this.nome, cognome : this.cognome, email : this.email, password : this.password, company: this.company}).then(function (res){
                     $scope.response = res.data;
-                    console.log(res);
                     if(res.data.message === undefined){
                         var myPopup = $ionicPopup.show({
                             title: 'Registrazione effettuata',
@@ -167,13 +244,6 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                         });
                         window.location.href = "#/page5";
                     }
-                    else {
-                        var myPopup = $ionicPopup.show({
-                            title: 'ERROR',
-                            subTitle: res.data.message,
-                            buttons: [{text: 'OK', type: 'button-positive'}]                
-                        });
-                    } 
                 });
                 
       }
@@ -229,6 +299,14 @@ function ($scope, $http, $stateParams, $ionicPopup) {
             buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
         });
     }
+    $scope.logout = function() {
+        var linkout = 'https://eventi-musicali.herokuapp.com/logout'
+        var myPopup = $ionicPopup.show({
+            title: 'Logout effettuato',
+            buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
+        });
+            window.location.href = "#/page5";
+    }
 }])
 
 .controller('addEventCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -244,11 +322,46 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                 luogo = $scope.data.luogo;
                 data = $scope.data.mese + " " + $scope.data.giorno + " " + $scope.data.anno + " " + $scope.data.orario;
                 prezzo = $scope.data.prezzo;
+
+                if((artista  === undefined) || (artista === "")){
+                    var myPopup = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                } else if ((luogo  === undefined) || (luogo === "")){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }else if ((prezzo  === undefined) || (prezzo === "")){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }else if (($scope.data.mese === undefined ) || ($scope.data.giorno === undefined) || ($scope.data.anno === undefined)){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }else if (($scope.data.orario  === undefined) || ($scope.data.orario === "")){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Missing credentials',
+                        
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                }
                 
                 
                 $http.post(link,{artista : artista, luogo : luogo, data : data, prezzo : prezzo}).then(function (res){
                     $scope.response = res.data;
-                    console.log(artista);
                     if(res.data.message === undefined){
                         var myPopup = $ionicPopup.show({
                             title: 'Evento aggiunto',
