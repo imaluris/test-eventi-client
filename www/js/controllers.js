@@ -254,7 +254,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                             title: 'Evento aggiunto',
                             buttons: [{text: 'OK', type: 'button-positive'}]                
                         });
-                        window.location.href = "#/page2";
+                        window.location.href = "#/page7";
                     }
                     else {
                         var myPopup = $ionicPopup.show({
