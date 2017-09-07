@@ -4,6 +4,21 @@ angular.module('app.services', [])
 
 }])
 
-.service('BlankService', [function(){
+.service('orgCompany', [function(){
+    var company = [];
+    
+      var addCompany = function(newObj) {
+          company.push(newObj);
+      };
+    
+      var getCompany = function(){
+          return company;
+      };
+    
+      return {
+        addCompany: addCompany,
+        getCompany: getCompany
+      };
+    
 
 }]);

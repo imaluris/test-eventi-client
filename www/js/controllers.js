@@ -144,10 +144,10 @@ function ($scope, $http, $stateParams, $ionicPopup) {
     }
 }])
 
-.controller('loginOrgCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginOrgCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup','orgCompany', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams, $ionicPopup) {
+function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
 
     $scope.data={};
     
@@ -155,11 +155,15 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                 var link = 'https://eventi-musicali.herokuapp.com/loginorg';
                 this.email = $scope.data.email;
                 this.password = $scope.data.password;
+                var organizzatore = ""
+                
     
                 
                 $http.post(link, {email : this.email, password : this.password}).then(function (res){
-                    $scope.response = res.data;
-                    if(res.data.message === undefined){
+                    $scope.response = res.data.message;
+                    organizzatore = res.data.org
+                    orgCompany.addCompany(organizzatore.company);
+                    if(res.data.message = "Logged In Successfully"){
                         window.location.href = "#/page7";
                     }
                     else {
@@ -265,10 +269,10 @@ function ($scope, $http, $stateParams) {
    
 }])
 
-.controller('eventsOrgCtrl', ['$scope', '$http', '$stateParams',  '$ionicPopup',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('eventsOrgCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', 'orgCompany',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams, $ionicPopup) {
+function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
     var link = 'https://eventi-musicali.herokuapp.com/events'
     events: any = [];
     dataEst = "";
@@ -293,11 +297,12 @@ function ($scope, $http, $stateParams, $ionicPopup) {
         $scope.events = events;
     });
 
-    $scope.buy = function() {
+    $scope.delete = function() {
         var myPopup = $ionicPopup.show({
-            title: 'Evento acquistato',
+            title: 'Francesco Puzza',
             buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
         });
+        
     }
     $scope.logout = function() {
         var linkout = 'https://eventi-musicali.herokuapp.com/logout'
@@ -309,12 +314,13 @@ function ($scope, $http, $stateParams, $ionicPopup) {
     }
 }])
 
-.controller('addEventCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('addEventCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', 'orgCompany', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams, $ionicPopup) {
+function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
 
     $scope.data={};
+
     
             $scope.submit = function () {
                 var link = 'http://eventi-musicali.herokuapp.com/events';
@@ -322,6 +328,9 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                 luogo = $scope.data.luogo;
                 data = $scope.data.mese + " " + $scope.data.giorno + " " + $scope.data.anno + " " + $scope.data.orario;
                 prezzo = $scope.data.prezzo;
+                compagnia1 = orgCompany.getCompany();
+                compagnia2 = compagnia1[0];
+
 
                 if((artista  === undefined) || (artista === "")){
                     var myPopup = $ionicPopup.show({
@@ -360,7 +369,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                 }
                 
                 
-                $http.post(link,{artista : artista, luogo : luogo, data : data, prezzo : prezzo}).then(function (res){
+                $http.post(link,{artista : artista, luogo : luogo, data : data, prezzo : prezzo, compagnia: compagnia2}).then(function (res){
                     $scope.response = res.data;
                     if(res.data.message === undefined){
                         var myPopup = $ionicPopup.show({
