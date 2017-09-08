@@ -180,7 +180,8 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
                     $scope.response = res.data.message;
                     organizzatore = res.data.org
                     orgCompany.addCompany(organizzatore.company);
-                    if(res.data.message = "Logged In Successfully"){
+                    console.log(res.data);
+                    if(res.data.message === "Logged In Successfully"){
                         window.location.href = "#/page7";
                     }
                     else {
