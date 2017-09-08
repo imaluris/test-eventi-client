@@ -113,6 +113,20 @@ function ($scope, $http, $stateParams, $ionicPopup) {
 
     $http.get(link).then(function (res){
         events = res.data;
+
+        events.sort(function (a, b) {
+            var temp1 = a.data;
+            var temp2 = b.data;
+        
+            if (temp1 < temp2) {
+                return -1;
+            } else if (temp1 == temp2) {
+                return 0;
+            } else {
+                return 1;
+            }
+        });
+
         n = events.length;
         while(i < n){
             dataEst = events[i].data.split("T");
@@ -124,6 +138,9 @@ function ($scope, $http, $stateParams, $ionicPopup) {
             i++;
         }
         $scope.events = events;
+        
+        
+        
     });
 
     $scope.buy = function() {
@@ -281,9 +298,26 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
     this.hour = 0;;
     n = 0;
     i = 0;
+    compagnia1 = orgCompany.getCompany();
+    compagnia2 = compagnia1[0];
+    console.log(compagnia2);
 
     $http.get(link).then(function (res){
         events = res.data;
+
+        events.sort(function (a, b) {
+            var temp1 = a.data;
+            var temp2 = b.data;
+        
+            if (temp1 < temp2) {
+                return -1;
+            } else if (temp1 == temp2) {
+                return 0;
+            } else {
+                return 1;
+            }
+        });
+
         n = events.length;
         while(i < n){
             dataEst = events[i].data.split("T");
@@ -295,14 +329,23 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
             i++;
         }
         $scope.events = events;
+        console.log(events);
     });
 
-    $scope.delete = function() {
+    $scope.remove = function(array, index) {
+        cod = events[index].id;
+        company = events[index].compagnia;
+        var link = 'https://eventi-musicali.herokuapp.com/events/destroy/' + cod;
+        if(compagnia2 === company){
+            array.splice(index,1);
+            $http.delete(link).then(function (res){
+        });
+    } else {
         var myPopup = $ionicPopup.show({
-            title: 'Francesco Puzza',
+            title: 'Non hai i permessi per eliminare questo evento',
             buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
         });
-        
+    }
     }
     $scope.logout = function() {
         var linkout = 'https://eventi-musicali.herokuapp.com/logout'
