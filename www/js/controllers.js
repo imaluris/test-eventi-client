@@ -280,10 +280,20 @@ function ($scope, $http, $stateParams) {
    
 }])
 
-.controller('orgChoiceCtrl', ['$scope', '$http', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('orgChoiceCtrl', ['$scope', '$http', '$stateParams', '$ionicPopup', 'orgCompany',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $http, $stateParams) {
+function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
+
+    $scope.logout = function() {
+        var linkout = 'https://eventi-musicali.herokuapp.com/logout'
+        var myPopup = $ionicPopup.show({
+            title: 'Logout effettuato',
+            buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
+        });
+            orgCompany.deleteCompany();
+            window.location.href = "#/page5";
+    }
    
 }])
 
@@ -347,14 +357,6 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
             buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
         });
     }
-    }
-    $scope.logout = function() {
-        var linkout = 'https://eventi-musicali.herokuapp.com/logout'
-        var myPopup = $ionicPopup.show({
-            title: 'Logout effettuato',
-            buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
-        });
-            window.location.href = "#/page5";
     }
 }])
 

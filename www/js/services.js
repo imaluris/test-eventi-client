@@ -10,6 +10,10 @@ angular.module('app.services', [])
       var addCompany = function(newObj) {
           company.push(newObj);
       };
+
+      var deleteCompany = function() {
+        company.pop();
+    };
     
       var getCompany = function(){
           return company;
@@ -17,7 +21,8 @@ angular.module('app.services', [])
     
       return {
         addCompany: addCompany,
-        getCompany: getCompany
+        getCompany: getCompany,
+        deleteCompany: deleteCompany
       };
     
 
