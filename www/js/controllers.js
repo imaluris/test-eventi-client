@@ -350,6 +350,10 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
         if(compagnia2 === company){
             array.splice(index,1);
             $http.delete(link).then(function (res){
+                var myPopup = $ionicPopup.show({
+                    title: 'Evento eliminato',
+                    buttons: [{text: 'OK', type: 'button button-positive button-small'}]                
+                });
         });
     } else {
         var myPopup = $ionicPopup.show({
@@ -376,39 +380,40 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
                 prezzo = $scope.data.prezzo;
                 compagnia1 = orgCompany.getCompany();
                 compagnia2 = compagnia1[0];
+                console.log(data);
 
 
                 if((artista  === undefined) || (artista === "")){
                     var myPopup = $ionicPopup.show({
                         title: 'ERROR',
-                        subTitle: 'Missing credentials',
+                        subTitle: 'Compila tutti i campi',
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
                 } else if ((luogo  === undefined) || (luogo === "")){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
-                        subTitle: 'Missing credentials',
+                        subTitle: 'Compila tutti i campi',
                         
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
                 }else if ((prezzo  === undefined) || (prezzo === "")){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
-                        subTitle: 'Missing credentials',
+                        subTitle: 'Compila tutti i campi',
                         
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
                 }else if (($scope.data.mese === undefined ) || ($scope.data.giorno === undefined) || ($scope.data.anno === undefined)){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
-                        subTitle: 'Missing credentials',
+                        subTitle: 'Inserisci la data',
                         
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
                 }else if (($scope.data.orario  === undefined) || ($scope.data.orario === "")){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
-                        subTitle: 'Missing credentials',
+                        subTitle: 'Compila tutti i campi',
                         
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
