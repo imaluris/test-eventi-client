@@ -52,6 +52,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                         subTitle: 'Missing credentials',
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 } else if ((this.cognome  === undefined) || (this.cognome === "")){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
@@ -59,6 +60,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                         
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 }else if (this.email === undefined){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
@@ -66,6 +68,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                         
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 }else if (this.password === undefined){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
@@ -73,6 +76,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                         
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 } else if (this.password.length < 6){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
@@ -80,6 +84,7 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                         
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 }
                 
                 $http.post(link,{nome : this.nome, cognome : this.cognome, email : this.email, password : this.password}).then(function (res){
@@ -219,41 +224,42 @@ function ($scope, $http, $stateParams, $ionicPopup) {
                         subTitle: 'Missing credentials',
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 } else if ((this.cognome  === undefined) || (this.cognome === "")){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
                         subTitle: 'Missing credentials',
-                        
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 }else if (this.email === undefined){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
                         subTitle: 'Formato email: example@example.it',
-                        
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 }else if (this.password === undefined){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
                         subTitle: 'Missing password',
-                        
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 } else if (this.password.length < 6){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
                         subTitle: 'Formato password: minimo 6 caratteri',
-                        
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 }else if ((this.company  === undefined) || (this.company === "")){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
                         subTitle: 'Missing credentials',
-                        
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 }
                 
                 
@@ -380,7 +386,13 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
                 prezzo = $scope.data.prezzo;
                 compagnia1 = orgCompany.getCompany();
                 compagnia2 = compagnia1[0];
-                console.log(data);
+                
+                m = new Date();
+                day = m.getDate();
+                month = m.getMonth() + 1;
+                year = m.getFullYear();
+                console.log(day + " "+ month +" "+ year);
+
 
 
                 if((artista  === undefined) || (artista === "")){
@@ -389,34 +401,71 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
                         subTitle: 'Compila tutti i campi',
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 } else if ((luogo  === undefined) || (luogo === "")){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
                         subTitle: 'Compila tutti i campi',
-                        
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
                 }else if ((prezzo  === undefined) || (prezzo === "")){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
                         subTitle: 'Compila tutti i campi',
-                        
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
-                }else if (($scope.data.mese === undefined ) || ($scope.data.giorno === undefined) || ($scope.data.anno === undefined)){
+                return false
+                }
+                if (($scope.data.mese === undefined ) || ($scope.data.giorno === undefined) || ($scope.data.anno === undefined)){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
                         subTitle: 'Inserisci la data',
-                        
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
-                }else if (($scope.data.orario  === undefined) || ($scope.data.orario === "")){
+                return false;
+                } 
+                if($scope.data.anno < year){
+                        var myPopup1 = $ionicPopup.show({
+                            title: 'ERROR',
+                            subTitle: 'La data che hai inserito e passata',
+                            buttons: [{text: 'OK', type: 'button-positive'}]
+                    });
+                    return false
+                }else if($scope.data.mese < month){
+                        var myPopup1 = $ionicPopup.show({
+                            title: 'ERROR',
+                            subTitle: 'La data che hai inserito e passata',
+                            buttons: [{text: 'OK', type: 'button-positive'}]
+                    });
+                    return false
+                }else if($scope.data.giorno < day){
+                        var myPopup1 = $ionicPopup.show({
+                            title: 'ERROR',
+                            subTitle: 'La data che hai inserito e passata',
+                            buttons: [{text: 'OK', type: 'button-positive'}]
+                    });
+                    return false
+                }
+                
+                if (($scope.data.orario  === undefined) || ($scope.data.orario === "")){
                     var myPopup1 = $ionicPopup.show({
                         title: 'ERROR',
                         subTitle: 'Compila tutti i campi',
-                        
                         buttons: [{text: 'OK', type: 'button-positive'}]
                 });
+                return false
+                } else {
+                    ora = $scope.data.orario;
+                    ora = ora.split(":");
+                    if((ora[0] > 24) || (ora[0] < 0) || (ora[1] > 59) || (ora[1] < 0)){
+                    var myPopup1 = $ionicPopup.show({
+                        title: 'ERROR',
+                        subTitle: 'Orario non valido',
+                        buttons: [{text: 'OK', type: 'button-positive'}]
+                });
+                    return false;
+                    }
                 }
                 
                 

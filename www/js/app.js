@@ -16,7 +16,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 .run(function($ionicPlatform) {
   // $ionicPlatform.ready(function() {
     $ionicPlatform.registerBackButtonAction(function (event) {
-      if ($ionicHistory.currentStateName() === 'events' || $ionicHistory.currentStateName() === 'orgchoice'){
+      if (($ionicHistory.currentStateName() === 'events') || ($ionicHistory.currentStateName() === 'orgchoice')){
         event.preventDefault();
       } else {
         $ionicHistory.goBack();
