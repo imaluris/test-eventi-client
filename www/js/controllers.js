@@ -391,7 +391,10 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
                 day = m.getDate();
                 month = m.getMonth() + 1;
                 year = m.getFullYear();
-                console.log(day + " "+ month +" "+ year);
+                dataGiorno = parseInt($scope.data.giorno);
+                dataMese = parseInt($scope.data.mese);
+                dataAnno = parseInt($scope.data.anno);
+
 
 
 
@@ -425,28 +428,26 @@ function ($scope, $http, $stateParams, $ionicPopup, orgCompany) {
                 });
                 return false;
                 } 
-                if($scope.data.anno < year){
-                        var myPopup1 = $ionicPopup.show({
-                            title: 'ERROR',
-                            subTitle: 'La data che hai inserito e passata',
-                            buttons: [{text: 'OK', type: 'button-positive'}]
-                    });
-                    return false
-                }else if($scope.data.mese < month){
-                        var myPopup1 = $ionicPopup.show({
-                            title: 'ERROR',
-                            subTitle: 'La data che hai inserito e passata',
-                            buttons: [{text: 'OK', type: 'button-positive'}]
-                    });
-                    return false
-                }else if($scope.data.giorno < day){
-                        var myPopup1 = $ionicPopup.show({
-                            title: 'ERROR',
-                            subTitle: 'La data che hai inserito e passata',
-                            buttons: [{text: 'OK', type: 'button-positive'}]
-                    });
-                    return false
-                }
+                if(dataAnno === year){
+                    if(dataMese < month){
+                                var myPopup1 = $ionicPopup.show({
+                                    title: 'ERROR',
+                                    subTitle: 'La data che hai inserito e passata',
+                                    buttons: [{text: 'OK', type: 'button-positive'}]
+                                });
+                                return false
+                    }else if(dataMese === month){
+                        if(dataGiorno < day){
+                                var myPopup1 = $ionicPopup.show({
+                                     title: 'ERROR',
+                                     subTitle: 'La data che hai inserito e passata',
+                                     buttons: [{text: 'OK', type: 'button-positive'}]
+                                });
+                                return false
+                            }
+                        }
+                 }
+
                 
                 if (($scope.data.orario  === undefined) || ($scope.data.orario === "")){
                     var myPopup1 = $ionicPopup.show({
